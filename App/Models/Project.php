@@ -22,4 +22,14 @@ class Project extends \Core\Model {
             ->query("SELECT * FROM projects WHERE ID = $id")
             ->fetchObject(__CLASS__);
     }
+
+    public static function create($data) {
+        self::connect()
+            ->prepare("INSERT INTO projects(title, description, deadline) VALUES(?, ?, ?)")
+            ->execute([
+                $data['title'],
+                $data['description'],
+                $data['deadline']
+            ]);
+    }
 }

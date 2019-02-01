@@ -26,6 +26,15 @@ class ProjectsController extends \Core\Controller {
         ]);
     }
 
+    public function create() {
+        View::render('Projects/create.php');
+    }
+
+    public function post_create($data) {
+        Project::create($data);
+        header('Location: ' . $_SERVER['REQUEST_URI']);
+    }
+
     private function validateID($id) {
         if (!$id || !is_numeric($id)) {
             echo 'Helytelen ID!';

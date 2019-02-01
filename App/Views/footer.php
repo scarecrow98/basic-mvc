@@ -1,4 +1,4 @@
         
-    <script src="public/js/main.js"></script>
+    <script src="http://<?= $_SERVER['HTTP_HOST'] ?>/cms/public/js/main.js"></script>
 </body>
 </html>

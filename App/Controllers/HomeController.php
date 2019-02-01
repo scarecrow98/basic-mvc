@@ -10,4 +10,8 @@ class HomeController extends \Core\Controller {
     public function index() {
         View::render('Home/index.php');
     }
+
+    public function fuck() {
+        echo 'asd';
+    }
 }
