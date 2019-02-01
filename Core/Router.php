@@ -2,6 +2,8 @@
 
 namespace Core;
 
+use \App\Controllers\ErrorController;
+
 class Router {
     
     private $route;
@@ -14,13 +16,14 @@ class Router {
         $url = rtrim($url, '/');
         $this->route = explode('/', $url);
 
-        $this->controller = !empty($this->route[0]) ? $this->route[0] : 'Home';
-        $this->action = isset($this->route[1]) ? $this->route[1] : 'index';
+        $this->controller = !empty($this->route[0]) ? ucfirst(strtolower($this->route[0])) : 'Home';
+        $this->action = isset($this->route[1]) ? strtolower($this->route[1]) : 'index';
         $this->param = isset($this->route[2]) ? $this->route[2] : null;
     }
 
     public function handle() {
-        $class = '\App\Controllers\\' . $this->controller . 'Controller';
+        $namespace = '\App\Controllers\\';
+        $class = $namespace . $this->controller . 'Controller';
 
         if (class_exists($class)) {
             $object = new $class();
@@ -33,10 +36,10 @@ class Router {
             if (method_exists($object, $this->action)) {
                 $object->{$this->action}($this->param);
             } else {
-                echo "A keresett oldal nem található";
+                ErrorController::err404();
             }
         } else {
-            echo "A keresett oldal nem található";
+            ErrorController::err404();
         }
     }
 }

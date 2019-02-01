@@ -2,6 +2,24 @@
 
 namespace App\Models;
 
+use PDO;
+
 class Project extends \Core\Model {
-    
+
+    public $ID;
+    public $title;
+    public $description;
+    public $deadline;
+
+    public static function all() {
+        return self::connect()
+            ->query('SELECT * FROM projects')
+            ->fetchAll(PDO::FETCH_CLASS, __CLASS__);
+    }
+
+    public static function byID($id) {
+        return self::connect()
+            ->query("SELECT * FROM projects WHERE ID = $id")
+            ->fetchObject(__CLASS__);
+    }
 }

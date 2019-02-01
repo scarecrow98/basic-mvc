@@ -1,3 +1,9 @@
-<?php
+<?php $project = $args['project'] ?>
 
-    printf("Cím: %s<br>Leírás:%s", $args['title'], $args['desc']);
+<h1>Részletek</h1>
+<ul>
+    <li>ID: <?= $project->ID ?></li>
+    <li>Cím: <?= $project->title ?></li>
+    <li>Leírás: <?= $project->description ?></li>
+    <li>Határidő: <?= $project->deadline ?></li>
+</ul>

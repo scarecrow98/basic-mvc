@@ -3,30 +3,27 @@
 namespace App\Controllers;
 
 use \Core\View;
+use \App\Models\Project;
 
 class ProjectsController extends \Core\Controller {
-    public function __construct() {
-
-    }
+    public function __construct() { }
 
     public function index() {
+        $projects = Project::all();
+
         View::render('Projects/index.php', [
-            'szam'  => 3
+            'projects'  => $projects
         ]);
     }
 
     public function details($id) {
         if (!$this->validateID($id)) return;
+
+        $project = Project::byID($id);
+
         View::render('Projects/details.php', [
-            'title' => 'Teszt projekt',
-            'desc'  => 'Ez egy teszt projekt'
+            'project'   => $project
         ]);
-    }
-
-    public function edit($id) {
-        if (!$this->validateID($id)) return;
-
-        echo "A $id-as számú projekt szerkesztése.";
     }
 
     private function validateID($id) {

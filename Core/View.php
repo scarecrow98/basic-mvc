@@ -1,6 +1,8 @@
 <?php
 namespace Core;
 
+use \App\Controllers\ErrorController;
+
 class View {
     public static function render($view, $args = null) {
         $file = dirname(__DIR__) . '/App/Views/' . $view;
@@ -8,7 +10,7 @@ class View {
         if (file_exists($file)) {
             require_once $file;
         } else {
-            echo "A nézet nem található: $view";
+            ErrorController::err404('Nem található nézet.');
         }
     }
 }

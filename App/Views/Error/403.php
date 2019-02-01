@@ -1,0 +1,1 @@
+<h1>Az oldal megtekintéséhez nincs jogosulságod!</h1>
