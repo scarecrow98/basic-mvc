@@ -13,4 +13,8 @@ class View {
             ErrorController::err404('Nem található nézet.');
         }
     }
+
+    public static function renderHTML($html_content) {
+        echo $html_content;
+    }
 }
